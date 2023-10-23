@@ -1,0 +1,76 @@
+
+* Github Cli
+
+#+begin_src text
+⚠ Work in progress.
+#+end_src
+
+This is a quick guide on setting up [[https://cli.github.com/][github cli]].
+
+** Git Basics
+
+Create a repo, commit, and push changes using github cli.
+
+#+begin_src bash :results output :noeval
+echo "A cool readme here." > README.md
+git init .
+git add README.md
+git commit -m "initial commit"
+#+end_src
+
+Add a file that you forgot to add without creating a new commit. A new commit hash
+will be created.
+
+#+begin_src bash :results output :noeval
+git add forgot-this.sh
+git commit --amend --no-edit
+#+end_src
+
+** Installation
+
+For mac you can use brew.
+
+#+begin_src bash :results output :noeval
+brew install gh
+#+end_src
+
+For void Linux:
+
+#+begin_src bash :results output :noeval
+xbps-install -S github-cli
+#+end_src
+
+For other OSes check [[https://cli.github.com/][cli.github.com]]
+
+** Authentication
+
+You will need to authenticate to:
+
++ create repos
++ delete repos
+
+Authenticate with your browser to create repos.
+
+#+begin_src bash :results output :noeval
+gh auth login
+#+end_src
+
+Authenticate for deleting repos.
+
+#+begin_src bash :results output :noeval
+gh auth refresh -h github.com -s delete_repo
+#+end_src
+
+** Creating Repos
+
+#+begin_src bash :results output :noeval
+gh repo create fakerepo --public -d 'description of repo' --disable-issues
+#+end_src
+
+** Deleting Repos
+
+Delete without confirmation.
+
+#+begin_src bash :results output :noeval
+gh repo delete somerepo --yes
+#+end_src
